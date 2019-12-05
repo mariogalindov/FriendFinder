@@ -1,1 +1,1 @@
-# Friend Finder app
+# Horror Friend Finder app
