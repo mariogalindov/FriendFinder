@@ -19,8 +19,11 @@ module.exports = function (app) {
         // userData = JSON.stringify(userData);
         console.log("This is the user data: " + userData)
         console.log("This are the user scores: " , userData.scores)
-        var userScores = userData.scores
-        
+        var userScores = [];
+        for (var s of userData.scores) {
+            userScores.push(parseInt(s));
+        }
+        userData.scores = userScores
 
         // console.log("This are the user scores: " + userScores);
 
@@ -31,8 +34,8 @@ module.exports = function (app) {
             console.log("Current friend: " + JSON.stringify(friends[i]));
             totalDifference = 0;
 
-            for (var j = 0; j<friends[i].scores[j]; j++) {
-                totalDifference += Math.abs(parseInt(userScores[j])-parseInt(friends[i].scores[j]));
+            for (var j = 0; j<friends[i].scores.length; j++) {
+                totalDifference += Math.abs(userScores[j]-parseInt(friends[i].scores[j]));
             }
             if (totalDifference <= bff.difference) {
                 bff.name = friends[i].name;
